@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import  { DropdownList }  from "./components/DropdownList";
-import { DomainDisplay } from "./components/DomainDisplay";
+import React, { useState, useEffect } from 'react';
+import  { DropdownList }  from './components/DropdownList';
+import { DomainDisplay } from './components/DomainDisplay';
 
 function App() {
   const [domains, setDomains] = useState([]);
@@ -25,8 +25,7 @@ function App() {
            <DropdownList 
                   domains = {domains}
                   formLabel = 'Select a domain'
-                  handleChange = {handleChange}
-                  
+                  handleChange = {handleChange}                 
               /> 
               <DomainDisplay {...domains[selectedId]} />
       </>

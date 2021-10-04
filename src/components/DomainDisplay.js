@@ -1,5 +1,5 @@
-import React from "react";
-import ListGroup from "react-bootstrap/ListGroup";
+import React from 'react';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 export const DomainDisplay = ({ created, expires, domainName }) => {
     return (
