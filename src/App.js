@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import  { DropdownList }  from "./components/DropdownList";
+import { DomainDisplay } from "./components/DomainDisplay";
 
 function App() {
+  const [domains, setDomains] = useState([]);
+  const [selectedId, setSelectedId] = useState('');
+
+  useEffect(() => {
+      async function fetchDomains(){
+          const response = await fetch('/api/domains');
+          const fetchedDomains = await response.json(response);
+          setDomains(fetchedDomains);
+      }
+      fetchDomains();    
+  }, []);
+  
+  const handleChange = e => {
+      //e.preventDefault();
+      setSelectedId(e);
+      console.log(`this is ${e}`)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+           <DropdownList 
+                  domains = {domains}
+                  formLabel = 'Select a domain'
+                  handleChange = {handleChange}
+                  
+              /> 
+              <DomainDisplay {...domains[selectedId]} />
+      </>
   );
 }
 
